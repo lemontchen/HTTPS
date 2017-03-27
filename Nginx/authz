@@ -1,0 +1,130 @@
+### This file is an example authorization file for svnserve.
+### Its format is identical to that of mod_authz_svn authorization
+### files.
+### As shown below each section defines authorizations for the path and
+### (optional) repository specified by the section name.
+### The authorizations follow. An authorization line can refer to:
+###  - a single user,
+###  - a group of users defined in a special [groups] section,
+###  - an alias defined in a special [aliases] section,
+###  - all authenticated users, using the '$authenticated' token,
+###  - only anonymous users, using the '$anonymous' token,
+###  - anyone, using the '*' wildcard.
+###
+### A match can be inverted by prefixing the rule with '~'. Rules can
+### grant read ('r') access, read-write ('rw') access, or no access
+### ('').
+
+[aliases]
+# joe = /C=XZ/ST=Dessert/L=Snake City/O=Snake Oil, Ltd./OU=Research Institute/CN=Joe Average
+
+[groups]
+g_manager=hanyu,liye,shangguan
+webProgrammer=wangkaili,zhengjiayu,zhangshirao,huangyoulong,yuanxuecheng,chenkangkang,luoxiong,xucongcong,zhenxiaoping,liyang
+project_p=chenkangkang,xucongcong,zengweixiong
+ui=xule,chencongya
+ios=zhangyukai,shijinping
+android=caimingyu,daizhifeng,penghao,liubing
+practice=
+
+cwi=chenkangkang,zhengjiayu,yuanxuecheng,chencongya
+wardrobe=chenkangkang,liyang,wangkaili,xule,shijinping,chencongya,zhangshirao,caimingyu
+dianxinProject=luoxiong,huangyoulong
+Goldpecker=luoxiong,huangyoulong,yuanxuecheng,taoyiran,daizhifeng
+Floatcat=luoxiong,huangyoulong,wangkaili,chencongya,tangxinqing,zhouyi
+EveryonePoker=xule,liyang,penghao,shijinping,zengweixiong,caimingyu,xucongcong,zhangyukai,chencongya
+fangdh03=zhangshirao
+Gproject=huangyoulong,luoxiong
+qixiuAR=zengweixiong,zhangyukai,penghao,chencongya,zhangshirao
+qixiuApp=chenkangkang
+qixiuweb=zhangshirao
+WardrobeHousekeeper=caimingyu,penghao,zhangyukai,shijinping,daizhifeng
+lupaoProject=huangyoulong,luoxiong
+wsjzProject=chenkangkang,zhengjiayu,yuanxuecheng,chencongya,liyang,wangkaili,xule
+pangjusi=huangyoulong,luoxiong,zhouyi,chencongya
+jifeng=chenkangkang,chencongya,zhangshirao,xule
+duizhang=hanyu
+unity=zhangsan,lisi,hanyu
+
+#[/]
+## @project_p = rw
+## @programmer =rw
+## @test = r
+##*=
+
+#[repo:/]
+#*=rw
+#@manager=rw
+# @cwi=chenkangkang
+# *=rw
+
+[project:/cwi]
+@g_manager = rw
+@cwi = rw
+
+[project:/wardrobe]
+@g_manager = rw
+@wardrobe = rw
+
+[project:/dianxinProject]
+@g_manager = rw
+@dianxinProject = rw
+
+[project:/App/Goldpecker]
+@g_manager = rw
+@Goldpecker = rw
+
+[project:/siteWeb/Floatcat]
+@g_manager = rw
+@Floatcat = rw
+
+[project:/App/EveryonePoker]
+@g_manager = rw
+@EveryonePoker = rw
+
+[project:/siteWeb/fangdh03]
+@g_manager = rw
+@fangdh03 = rw
+
+[project:/siteWeb/Gproject]
+@g_manager = rw
+@Gproject = rw
+
+[project:/App/qixiuAR]
+@g_manager = rw
+@qixiuAR = rw
+
+[project:/companyProject/qixiu/code/qixiuweb]
+@g_manager = rw
+@qixiuweb = rw
+
+[project:/App/WardrobeHousekeeper]
+@g_manager = rw
+@WardrobeHousekeeper = rw
+
+[project:/lupaoProject/new]
+@g_manager = rw
+@lupaoProject = rw
+
+[project:/wsjzProject]
+@g_manager = rw
+@wsjzProject = rw
+
+[project:/siteWeb/pangjusi]
+@g_manager = rw
+@pangjusi = rw
+
+[project:/jifeng]
+@g_manager = rw
+@jifeng = rw
+
+[project:/siteWeb/unity]
+@unity = rw
+
+[project:/siteWeb/duizhang]
+@g_manager = rw
+@duizhang = rw
+
+[project:/]
+@g_manager = rw
+@qixiuApp = rw
